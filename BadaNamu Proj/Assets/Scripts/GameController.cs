@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        hiscore = PlayerPrefs.GetInt("Hisocre", 0);
+        hiscore = PlayerPrefs.GetInt("hiscore", 0);
         BeginGame();
 	}
 	
@@ -59,8 +59,8 @@ public class GameController : MonoBehaviour {
             // spawn an asteroid
             Instantiate(asteroid,
                 new Vector3(Random.Range(-9.0f, 9.0f),
-                            Random.Range(-6.0f, 6.0f),
-                            Quaternion.Euler(0, 0, Random.Range(-0.0f, 359.0f)));
+                            Random.Range(-6.0f, 6.0f), 0),
+                    Quaternion.Euler(0, 0, Random.Range(-0.0f, 359.0f)));
         }
         waveText.text = "WAVE:" + wave;
     }
@@ -90,6 +90,10 @@ public class GameController : MonoBehaviour {
 
         if (lives < 1)
             BeginGame();
+    }
+
+    public void DecrementAsteroids() {
+        asteroidsRemaining--;
     }
 
     public void SplitAsteroid() {
