@@ -47,15 +47,13 @@ public class GameController : MonoBehaviour {
     }
 
     void SpawnAsteroids() {
-
-        int i = 0; 
         DestroyExistingAsteroids();
 
         //decide how many asteroids to spawn
         //if any asteroids are left, substract them
         asteroidsRemaining = (wave * increaseEachWave);
 
-        while (i < asteroidsRemaining) {
+        for (int i = 0; i < asteroidsRemaining; i++) {
             // spawn an asteroid
             Instantiate(asteroid,
                 new Vector3(Random.Range(-9.0f, 9.0f),
@@ -104,11 +102,13 @@ public class GameController : MonoBehaviour {
 
         GameObject[] asteroids =
             GameObject.FindGameObjectsWithTag("Large Asteroid");
+
         foreach (GameObject current in asteroids)
             GameObject.Destroy(current);
 
         GameObject[] asteroids2 =
             GameObject.FindGameObjectsWithTag("Small Asteroid");
+
         foreach (GameObject current in asteroids2)
             GameObject.Destroy(current);
     }
